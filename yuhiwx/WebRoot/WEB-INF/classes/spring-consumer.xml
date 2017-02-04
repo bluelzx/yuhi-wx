@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+ 	
+	<!-- 消费服务名称 -->
+    <dubbo:application name="${dubbox.application}" owner="programmer" organization="dubbox"/>
+	<!-- zookeeper注册中心  -->
+    <dubbo:registry address="${dubbox.registry.address}"/>
+    <!-- 扫描dubbox注解位置 -->
+    <dubbo:annotation package="com.buss.project" />
+    <!-- kryo实现序列化  -->
+    <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.yuhi.wechar.serial.SerializationOptimizerImpl" />
+	<!-- 远程服务接口配置 -->
+	<dubbo:consumer check="false" />
+	<!-- 接口列表 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.OwnerFacade" id="ownerFacade" retries="0" timeout="5000" version="1.0"  />
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectCardInvitationFacade" id="projectCardInvitationFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectCardObjectionFacade" id="projectCardObjectionFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectCardFacade" id="projectCardFacade" version="1.0" />
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectCreateFacade" id="projectCreateFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectOwnermesFacade" id="projectOwnermesFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectInvitationFacade" id="projectInvitationFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectPartFacade" id="projectPartFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectPersonFacade" id="projectPersonFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectPickHistoryFacade" id="projectPickHistoryFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectServerTypeFacade" id="projectServerTypeFacade" version="1.0"/>
+	<!-- owner服务 -->
+	<dubbo:reference interface="com.yuhi.wechar.facade.ProjectSignFacade" id="projectSignFacade" version="1.0"/>
+	<!-- ProjectCardStatistics服务 -->
+<dubbo:reference interface="com.yuhi.wechar.facade.ProjectCardStatisticsFacade" id="projectCardStatisticsFacade" version="1.0"/>
+	
+	
+</beans>
